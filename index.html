@@ -1,387 +1,745 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Typography Gallery</title>
 
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            
-        }
-        div.sidebar{
-            background-color: rgb(248, 244, 244);
-            float: left;
-            left: -17%;
-            width: 20%;
-            height: 100vh;
-            position: fixed;
-            transition: left 0.3s ease;
-            z-index: 1;
-        }
-        #menu-toggle:checked ~ .sidebar{
-           left: 0;
-        }
-        .menu-btn {
-      position: fixed;
-      top: 20px;
-    left: 0.5%;
-      font-size: 32px;
-     width: 1em;
-      color: rgb(13, 12, 12);
-      
-     
-      z-index: 2;
-    }
-
-        section.top{
-            background-color: rgb(224, 224, 224);
-            color: black;
-           height: 500px;
-           padding: 5%;
-           
-        }
-
-        .main{
-            margin-left: 3%;
-            transition: margin-left 0.3s ease;
-            
-            margin-top: 0
-           
-        }
-        #menu-toggle:checked ~ .main {
-      margin-left: 20%;
-    }
     
-    .sidebar li {
-      display: block;
-      padding: 20px;
-      color: rgb(6, 6, 6);
-      text-align: center;
-      font-size: 25px;
-      font-style: italic;
-    }
-    .sidebar li:hover {
-      background: #6d6f70;
-      color: white;
-    } 
-section.top h2{
-    font-style: italic;
-    font-size: 63px;
-    margin-left: 3%;
-    padding: 20px;
-    margin-top: 2%;
-}
- #menu-toggle:checked + .menu-btn {
-      display: none;
-    }
-section.top img{
-    margin-top: 10%;
-    margin-left: 5%;
-}
-div.items{
-        display: grid;
-        gap:10px;
-        grid-template-columns:auto auto auto ;
-        padding-left: 3%;
-        text-align: center;
-       }
-       .first , .second , .third , .fourth , .fifth , .sixth , .seventh , .eighth , .ninth , .tenth , .eleventh , .twelfth {
-        width: 100%;
-        margin: 2%;
-        gap: 0px;
-      
-       }
-       div.para,div.para2{
-        display: flex;
-        width: 100%;
-        padding: 30px;
-        
-        height: 450px;
-        
-       }
-       div.text,div.text2{
-        width: 50%;
-        border-left: 1px solid rgb(65, 63, 63);
-        padding: 10px;
-        
-        line-height: 33px;
-        font-size: 15px;
-        
-       }
-      div.text2{
-       
-        height: 50%;
-       }
-       h1.heading{
-       width: 50%;
-        font-size: 50px;
-        line-height: 58px;
-        letter-spacing: 2px;
-        font-style: italic;
-        text-align: center;
-        padding-top: 5%;
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+>
+
     
-       }
-        div.text2 form input {
-        width: 60%;
-      border: 1px solid blue;
-        padding: 5px;
-        height: 30px;
-    }
-    div.text2 form button{
-        width: 20%;
-        height: 30px;
-      border: none;
-        background-color: rgb(71, 162, 214);
-        color: white;
-        font-size: 15px;
-        cursor: pointer;
-    }
-    label.check{
-      
-        margin-top: 10px;
-        display: flex;
-        align-items: flex-start;
-    }
-    div.para2{
-        background-color: rgb(203, 202, 202);
-        height: 400px;
-    }
-    #checkbox2{
-        width: 14px;
-        height: 14px;
-    }
-
-div.share{
-        background-color: rgb(46, 45, 45);
-        color: white;
-        height: 500px;
-       
-    }
-    div.share p{
-        font-size: 14px;
-        width: 50%;
-        margin-left: 500px;
-        padding: 10px;
-    }
-    div.share h1{
-        
-        font-size: 70px;
-        padding: 10px;
-        padding-left: 30px;
-    }
-    div.share input{
-        width: 80%;
-        height: 35px;
-      margin-left: 40px;
-    }
-    div.share button{
-       width: 10%;
-        height: 35px;
-      border: none;
-        background-color: rgb(224, 30, 30);
-        color: white;
-        font-size: 15px;
-        cursor: pointer;
-    }
-    div.para, 
-div.para2, 
-div.share {
-    width: 100%;        
-    margin: 0;          
-    padding: 40px;      
-    box-sizing: border-box;
+<style>
+    
+      * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-
-div.fonts {
-    display: flex;
-    justify-content: space-between;  
-    align-items: flex-start;         
-    padding: 80px;
-    background-color: rgb(224, 224, 224);
-    width: 100%;
-    box-sizing: border-box;
-    gap: 20px;
+html,
+body {
+  height: 100%;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height: 1.4;
+  color: #111;
 }
 
-div.options {
-    flex: 1;                         
-    line-height: 40px;
-    font-size: 14px;
-    text-align: left;
-    padding-left: 20px;
-    border-left: 2px solid rgba(0,0,0,0.3);
-    height: auto;                    
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
-footer{
-    clear: both;
-    width: 100%;
-    height: auto;
-    background-color: white;
-    margin-bottom: 0px;
-    padding: 2%;
-    text-align: center;
+
+a {
+  color: inherit;
 }
-div.items{
-            display: grid;
-            gap:10px;
-            grid-template-columns:auto auto auto ;
-            padding-left: 3%;
-            text-align: center;
-        }
-        
+
+/* Menu button */
+.menu-btn {
+  position: fixed;
+  top: 16px;
+  left: 12px;
+  z-index: 1200;
+  cursor: pointer;
+  padding: 8px 10px;
+  font-size: 26px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px; /* hidden by default */
+  width: 260px;
+  max-width: 85%;
+  height: 100vh;
+  background: #f8f4f4;
+  transition: left 0.28s ease;
+  padding-top: 64px;
+  z-index: 1000;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.06);
+}
+
+.sidebar.active {
+  left: 0; /* slide in */
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 16px 18px;
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  color: #111;
+}
+
+.sidebar li img {
+  max-width: 140px;
+  margin: 0 auto 8px;
+  display: block;
+}
+
+.sidebar li:hover {
+  background: #6d6f70;
+  color: #fff;
+}
+
+/* Main */
+.main {
+  transition: margin-left 0.28s ease;
+  padding: 22px;
+  margin-left: 0; /* overlay mode default */
+}
+
+.main.shifted {
+  margin-left: 0; /* default (mobile: no push) */
+}
+
+/* On desktop, push content when sidebar active */
+@media (min-width: 901px) {
+  .main.shifted {
+    margin-left: 260px;
+  }
+}
+
+/* Top Section */
+section.top {
+  background: #e0e0e0;
+  padding: 32px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+}
+
+section.top img {
+  width: 110px;
+  height: auto;
+}
+
+section.top h2 {
+  font-style: italic;
+  font-size: clamp(20px, 4vw, 48px);
+  margin: 0;
+  margin-top: 15%;
+}
+
+/* Items Grid */
+.items {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 16px;
+  margin-top: 20px;
+}
+
 .items div {
   position: relative;
   overflow: hidden;
+  border-radius: 6px;
 }
 
 .items img {
   width: 100%;
-  display: block;
-  transition: opacity 0.3s ease; 
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.28s ease;
 }
 
-.items div span {
+.items span {
   position: absolute;
-  top: 10%;
- color: white;
-  padding: 5px 10px;
- opacity: 0;
-  transition: opacity 0.3s ease;
-  font-weight: bold;
+  left: 12px;
+  bottom: 12px;
+  color: #fff;
+  padding: 6px 10px;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s, transform 0.2s;
+  font-size: clamp(14px, 3.6vw, 38px);
 }
 
 .items div::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.28s;
+  background: rgba(0, 0, 0, 0.3);
 }
 
-.items .first:hover::before { background: rgba(195,192,192,0.6); opacity: 1; }
-.items .second:hover::before { background: rgba(155, 7, 7, 0.6); opacity: 1; }
-.items .third:hover::before { background: rgba(129,182,235,0.6); opacity: 1; }
-.items .fourth:hover::before { background: rgba(169,120,47,0.6); opacity: 1; }
-.items .fifth:hover::before { background: rgba(78,78,92,0.6); opacity: 1; }
-.items .sixth:hover::before { background: pink; opacity: 1; }
-.items .seventh:hover::before { background: rgb(72,70,70); opacity: 1; }
-.items .eighth:hover::before { background: palevioletred; opacity: 1; }
-.items .ninth:hover::before { background: rgb(10,91,10); opacity: 1; }
-.items .tenth:hover::before { background: aqua; opacity: 1; }
-.items .eleventh:hover::before { background: yellow; opacity: 1; }
-
-
 .items div:hover img {
-  opacity: 0.2; 
+  opacity: 0.22;
 }
 
 .items div:hover span {
   opacity: 1;
-  font-style: italic;
+  transform: translateY(0);
+}
+
+/* Paragraph sections */
+.para,
+.para2 {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  padding: 18px;
+  border-radius: 6px;
+  height: 70%;
+}
+
+h1.heading {
+  flex: 1 1 300px;
   font-size: 50px;
-text-align: right;
-left: 5%;
+  text-align: center;
+  padding: 24px;
+  margin-top: 5%;
+}
+
+.text,
+.text2 {
+  flex: 1 1 380px;
+  padding: 12px;
+  min-width: 240px;
+  line-height: 1.6;
+  font-size: 15px;
+  border-left: 1px solid gray;
+  margin-top: 5%;
+}
+
+@media (min-width: 601px) {
+  .text {
+    border-left: 1px solid rgb(65, 63, 63);
+    padding-left: 22px;
+  }
+}
+
+.signup input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #2b7fb2;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.signup button {
+  padding: 10px 14px;
+  border: none;
+  background: #47a2d6;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.signup .checkbox-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.signup label {
+  font-size: 14px;
+}
+
+.para2 {
+  background: #cbcaca;
+  border-radius: 6px;
+}
+
+/* Share Section */
+.share {
+  background-color: rgb(46, 45, 45);
+  color: white;
+  height: 500px;
+}
+
+.share h1 {
+  font-size: 50px;
+  padding: 10px;
+  padding-left: 30px;
+}
+
+.share input {
+  width: 80%;
+  height: 35px;
+  margin-left: 40px;
+}
+
+.share button {
+  width: 10%;
+  height: 35px;
+  border: none;
+  background-color: rgb(224, 30, 30);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.share p {
+  font-size: 14px;
+  width: 50%;
+  margin-left: 400px;
+  padding: 10px;
+  margin-top: 10%;
+}
+
+/* Fonts section */
+.fonts {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;
+  padding: 40px 0;
+  margin-top: 24px;
+  background: #e0e0e0;
+}
+
+.options {
+  flex: 1 1 25%;
+  min-width: 0;
+  padding: 12px;
+  border-left: 2px solid rgba(0, 0, 0, 0.12);
+  line-height: 40px;
+  font-size: 14px;
+  text-align: left;
+  margin-left: 3px;
+}
+
+@media (max-width: 600px) {
+  .options {
+    border-left: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 16px;
+  }
+}
+
+/* Footer */
+footer {
+  padding: 20px;
+  text-align: center;
+  margin-top: 30px;
+  background: #fff;
+}
+
+/* Small screen adjustments */
+@media (max-width: 600px) {
+  .menu-btn {
+    left: 12px;
+  }
+  .items img {
+    height: 180px;
+  }
+  .share h1 {
+    font-size: 28px;
+  }
+  .sidebar li {
+    font-size: 16px;
+  }
+  .sidebar {
+    padding-top: 80px;
+  }
+  .main {
+    padding: 16px;
+  }
+  .items {
+    gap: 12px;
+  }
+}
+/* Sidebar hidden by default */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 260px;
+  height: 100%;
+  background: #f8f4f4;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding-top: 60px;
+}
+
+/* Sidebar visible */
+.sidebar.active {
+  left: 0;
+}
+
+/* Main content default */
+.main {
+  transition: margin-left 0.3s ease;
+  margin-left: 0; /* always 0 unless on desktop with sidebar open */
+}
+
+/* On desktop, push content when sidebar is active */
+@media (min-width: 901px) {
+  .main.shifted {
+    margin-left: 260px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  /* Gallery: 1 image per row, full width */
+  .items {
+    grid-template-columns: 1fr; 
+    gap: 16px;
+  }
+
+  .items div {
+    width: 100%;
+    height: auto; /* let height adjust naturally */
+  }
+
+  .items img {
+    width: 100%;
+    height: auto; /* keep aspect ratio */
+    object-fit: cover;
+  }
+
+  /* Para sections stack full width */
+  .para,
+  .para2 {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .heading {
+    text-align: center;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  .text,
+  .text2 {
+    border-left: none;
+    margin-top: 0;
+    padding-left: 0;
+    width: 100%;
+  }
+
+  /* Fonts section: stack full width */
+  .fonts {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .options {
+    border-left: none;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    padding-top: 16px;
+    margin-left: 0;
+    width: 100%; /* make options stretch full */
+  }
+
+  /* Share section responsive */
+  .share-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .share input,
+  .share button {
+    width: 100%; /* full width on mobile */
+  }
+
+  .share p {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+    padding: 10px;
+  }
+}
+.gallery-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.gallery-item img {
+  transition: opacity 0.3s;
+}
+
+.gallery-item .caption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(14px, 3.6vw, 38px);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.gallery-item:hover::before {
+  opacity: 1;
+}
+
+.gallery-item:hover img {
+  opacity: 0.3;
+}
+
+.gallery-item:hover .caption {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 
+
+
     </style>
-</head>
-<body>
-     <input type="checkbox" id="menu-toggle">
-<label for="menu-toggle" class="menu-btn">☰</label>
-    <div class="sidebar">
-        <ul>
-            <li><img src="typo.png" alt=""></li>
-            <li>home</li>
-            <li>fonts</li>
-            <li>membership</li>
-            <li>contact</li>
-            <li>about</li>
-        </ul>
+  </head>
+
+  <body>
+    
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+
+    <!-- Sidebar -->
+    <div class="sidebar"  id="sidebar">
+      <ul>
+        <li><img src="typo.png" alt="logo" /></li>
+        <li>home</li>
+        <li>fonts</li>
+        <li>membership</li>
+        <li>contact</li>
+        <li>about</li>
+      </ul>
     </div>
-    <div class="main">
-    <section class="top">
-        <img src="typo.png" alt="">
-        <h2>Excellent topography <br>collection_</h2>
-    </section>
-   
-<div class="items">
-            <div class="first"><img src="home_typo_portfolio0.jpg" alt=""><span>Align huoeb</span></div>
-            <div class="second"><img src="home_typo_portfolio1.jpg" alt=""><span>Tyuty bcbeuo</span></div>
-            <div class="third"><img src="home_typo_portfolio2.jpg" alt=""><span>yuyr Three</span></div>
-            <div class="fourth"><img src="home_typo_portfolio3.jpg" alt=""><span style="color: black;">Text ryueur</span></div>
-            <div class="fifth"><img src="home_typo_portfolio4.jpg" alt=""><span>Suebc bcnn</span></div>
-            <div class="sixth"><img src="home_typo_portfolio5.jpg" alt=""><span>Text Six</span></div>
-            <div class="seventh"><img src="home_typo_portfolio6.jpg" alt=""><span>Text Seven</span></div>
-            <div class="eighth"><img src="home_typo_portfolio7.jpg" alt=""><span style="color: rgb(0, 0, 0);">Text Eight</span></div>
-            <div class="ninth"><img src="home_typo_portfolio8.jpg" alt=""><span>Text Nine</span></div>
-            <div class="tenth"><img src="home_typo_portfolio9.jpg" alt=""><span style="color: rgb(0, 0, 0);">Text Ten</span></div>
-            <div class="eleventh"><img src="home_typo_portfolio10.jpg" alt=""><span style="color: black;">Text Eleven</span></div>
-            
+
+    <!-- Main -->
+    <main class="main"id="main">
+      <!-- Top Section -->
+      <section class="top">
+        <img src="typo.png" alt="logo" />
+        <h2>Excellent topography<br />collection_</h2>
+      </section>
+
+      <!-- Gallery Items -->
+      <!-- <div class="items">
+        <div class="first">
+          <img src="home_typo_portfolio0.jpg" alt="" />
+          <span>Align huoeb</span>
         </div>
+        <div class="second">
+          <img src="home_typo_portfolio1.jpg" alt="" />
+          <span>Tyuty bcbeuo</span>
+        </div>
+        <div class="third">
+          <img src="home_typo_portfolio2.jpg" alt="" />
+          <span>yuyr Three</span>
+        </div>
+        <div class="fourth">
+          <img src="home_typo_portfolio3.jpg" alt="" />
+          <span>Text ryueur</span>
+        </div>
+        <div class="fifth">
+          <img src="home_typo_portfolio4.jpg" alt="" />
+          <span>Suebc bcnn</span>
+        </div>
+        <div class="sixth">
+          <img src="home_typo_portfolio5.jpg" alt="" />
+          <span>Text Six</span>
+        </div>
+        <div class="seventh">
+          <img src="home_typo_portfolio6.jpg" alt="" />
+          <span>Text Seven</span>
+        </div>
+        <div class="eighth">
+          <img src="home_typo_portfolio7.jpg" alt="" />
+          <span>Text Eight</span>
+        </div>
+        <div class="ninth">
+          <img src="home_typo_portfolio8.jpg" alt="" />
+          <span>Text Nine</span>
+        </div>
+        <div class="tenth">
+          <img src="home_typo_portfolio9.jpg" alt="" />
+          <span>Text Ten</span>
+        </div>
+        <div class="eleventh">
+          <img src="home_typo_portfolio10.jpg" alt="" />
+          <span>Text Eleven</span>
+        </div>
+      </div> -->
+<div class="container my-4">
+  <div class="row g-3">
 
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item position-relative overflow-hidden rounded">
+        <img src="home_typo_portfolio0.jpg" class="img-fluid" alt="">
+        <span class="caption">Align huoeb</span>
+      </div>
+    </div>
 
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item position-relative overflow-hidden rounded">
+        <img src="home_typo_portfolio1.jpg" class="img-fluid" alt="">
+        <span class="caption">Tyuty bcbeuo</span>
+      </div>
+    </div>
 
-         <div class="para">
-           <h1 class="heading"> <strong> We love <br>typography </strong></h1>
-            <div class="text">
-                <p><strong>Lorem ipsum dolor sit amet consectetur,
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor ex beatae veritatis eum sequi rem optio, dolores commodi consequatur sint aliquid est placeat ullam deleniti molestias dolorem consequuntur delectus recusandae.lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime amet voluptates </strong> <br> <br> ex excepturi, reprehenderit corporis eaque eum voluptatem facilis soluta expedita! Corrupti, magni! Voluptatum vitae facilis expedita nihil, alias cupiditate.adipisicing elit. Adipisci ex in mollitia eaque, quibusdam debitis harum? At debitis aut vero commodi ullam iure reiciendis similique ut quos nesciunt. Voluptates, magnam.
-                </p>
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item position-relative overflow-hidden rounded">
+        <img src="home_typo_portfolio2.jpg" class="img-fluid" alt="">
+        <span class="caption">yuyr Three</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item position-relative overflow-hidden rounded">
+        <img src="home_typo_portfolio3.jpg" class="img-fluid" alt="">
+        <span class="caption">Text ryueur</span>
+      </div>
+
+       <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item position-relative overflow-hidden rounded">
+        <img src="home_typo_portfolio4.jpg" class="img-fluid" alt="">
+        <span class="caption">Text ryueur</span>
+      </div>
+
+       <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item position-relative overflow-hidden rounded">
+        <img src="home_typo_portfolio5.jpg" class="img-fluid" alt="">
+        <span class="caption">Text ryueur</span>
+      </div>
+
+       <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item position-relative overflow-hidden rounded">
+        <img src="home_typo_portfolio6.jpg" class="img-fluid" alt="">
+        <span class="caption">Text ryueur</span>
+      </div>
+
+       <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item position-relative overflow-hidden rounded">
+        <img src="home_typo_portfolio7.jpg" class="img-fluid" alt="">
+        <span class="caption">Text ryueur</span>
+      </div>
+
+        <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item position-relative overflow-hidden rounded">
+        <img src="home_typo_portfolio8.jpg" class="img-fluid" alt="">
+        <span class="caption">Text ryueur</span>
+      </div>
+
+       <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item position-relative overflow-hidden rounded">
+        <img src="home_typo_portfolio9.jpg" class="img-fluid" alt="">
+        <span class="caption">Text ryueur</span>
+      </div>
+
+      </div>
+    <!-- repeat other images the same way -->
+    
+  </div>
+</div>
+
+      <!-- Typography Section -->
+      <div class="para">
+        <h1 class="heading"><strong>We love<br />typography</strong></h1>
+        <div class="text">
+          <p>
+            <strong>Lorem ipsum dolor sit amet consectetur... (sample text)</strong
+            ><br /><br />
+            Ex excepturi, reprehenderit corporis eaque eum voluptatem facilis
+            soluta expedita! Corrupti, magni! Voluptatum vitae facilis expedita
+            nihil, alias cupiditate. Adipisicing elit. Adipisci ex in mollitia
+            eaque, quibusdam debitis harum? At debitis aut vero commodi ullam
+            iure reiciendis similique ut quos nesciunt. Voluptates, magnam.
+          </p>
+        </div>
+      </div>
+
+      <!-- Signup Section -->
+      <div class="para2">
+        <h1 class="heading">Receive new fonts<br />every week</h1>
+        <div class="text2">
+          <form action="" class="signup">
+            <input type="email" placeholder="Your email" />
+            <button type="submit">Sign up</button>
+            <div style="height: 12px"></div>
+            <div class="checkbox-row">
+              <input type="checkbox" id="checkbox2" />
+              <label for="checkbox2">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Doloribus voluptatum vitae...
+              </label>
             </div>
+          </form>
         </div>
+      </div>
 
-         <div class="para2">
-          
-            <h1 class="heading">Receive new fonts <br>every week</h1>
-             <div class="text2">
-                <form action="" class="signup">
-                    <input type="email" placeholder="Your email" id="">
-                    <button type="submit">Sign up</button>
-                    <br>
-                    <br>
-                    <label for="" class="">
-                <input type="checkbox" name="" id="checkbox2"><label for="" style="margin-left: 5px;">  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus voluptatum vitae, dolores fugit ducimus atque optio cum praesentium ea tempore ipsum corrupti accusantium ipsam quaerat nobis sapiente vero maxime. Qui!</label>
-                    </label>
-                </form>
+      <!-- Share Section -->
+      <div class="share">
+        <h1>Share with us your<br />favorite font</h1>
+        <br />
+        <form class="share-form">
+          <input type="url" placeholder="Paste a link to font page" />
+          <button type="submit">Share</button>
+        </form>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus in porro
+          delectus dicta voluptate fugiat, enim itaque earum labore iste
+          consectetur.
+        </p>
+      </div>
 
-             </div>
+      <!-- Fonts Info Section -->
+      <div class="fonts">
+        <div class="options">
+          <h2>Serif</h2>
+          <p>Lorem, ctetur adipisicing elit. Veritatis quia iusto obcaecati...</p>
         </div>
-
-        
-        <div class="share">
-            <h1>Share with us your <br>favorite font</h1>
-            <br><br>
-            <form action="" class="share-form">
-                <input type="url" placeholder="Paste a link to font page" id="">
-                <button type="submit">Share</button>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus in porro delectus dicta voluptate fugiat, enim itaque earum labore iste consectetur. Exercitationem recusandae aspernatur repellendus provident totam vel ut tempore.lorem Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi exercitationem hic sequi neque deserunt! Perferendis illum ducimus iure deleniti perspiciatis aspernatur explicabo, velit quos cumque</p>
-            </form>
+        <div class="options">
+          <h2>Sans Serif</h2>
+          <p>
+            Lorem, ipsum dolor sit am iusto obcaecati, blanditiis deserunt sequi
+            possimus...
+          </p>
         </div>
+        <div class="options">
+          <h2>Handwrited</h2>
+          <p>
+            Lorem, ipsum dolor sit am iusto obcaecati, blanditiis deserunt sequi
+            possimus...
+          </p>
+        </div>
+        <div class="options">
+          <h2>Display</h2>
+          <p>Lorem, ctetur adipisicing elit. Veritatis quia iusto obcaecati...</p>
+        </div>
+      </div>
 
-        <div class="fonts" >
-        <div class="options"><h2>Serif</h2> 
-        <p>Lorem, ctetur <br> adipisicing elit. Veritatis quia <br>iusto obcaecati, blanditi <br>possibr br oacilis.</p></div>
-        <div class="options"><h2>Sans Serif</h2> 
-        <p>Lorem, ipsum dolor sit am <br> iusto obcaecati, blanditiis dese <br>runt sequi possimus commo <br>n quos necessit <br>atibus nobis magnam ut <br> tempore, quae volupta <br>tum facilis.</p></div>
-        <div class="options"><h2>Handwrited</h2> 
-        <p>Lorem, ipsum dolor sit am <br> iusto obcaecati, blanditiis dese <br>runt sequi possimus commo <br>n quos necessit <br>atibus nobis magnam ut <br> tempore, quae volupta <br>tum facilis.</p></div>
-        <div class="options"><h2>Display</h2> 
-        <p>Lorem, ctetur <br> adipisicing elit. Veritatis quia <br>iusto obcaecati, blanditi <br>possibr br oacilis.</p></div>
-       
-     </div>
-     <footer>
- © 2025 Betheme by Muffin group | All Rights Reserved | Powered by WordPress
-</footer>
-    </div>
-</body>
+      <!-- Footer -->
+      <footer>
+        © 2025 Betheme by Muffin group | All Rights Reserved | Powered by
+        WordPress
+      </footer>
+    </main>
+
+     <script>
+      function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("main").classList.toggle("shifted");
+}
+
+    </script>
+  </body>
 </html>
