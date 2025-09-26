@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Full Demo Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">DemoSite</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Carousel -->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="home_typo_portfolio3.jpg" class="d-block w-100" alt="slide1">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>First Slide</h5>
+            <p>Welcome to our Bootstrap demo page.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="home_typo_portfolio5.jpg" class="d-block w-100" alt="slide2">
+        </div>
+        <div class="carousel-item">
+          <img src="home_typo_portfolio7.jpg" class="d-block w-100" alt="slide3">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+
+    <!-- Alerts -->
+    <div class="container my-4">
+      <div class="alert alert-success">This is a success alert!</div>
+      <div class="alert alert-warning">This is a warning alert!</div>
+    </div>
+
+    <!-- Cards Section -->
+    <div class="container py-5">
+      <h2 class="text-center mb-4">Our Features</h2>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="home_typo_portfolio3.jpg" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Fast</h5>
+              <p class="card-text">Experience lightning fast performance.</p>
+              <span class="badge text-bg-primary">New</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="home_typo_portfolio2.jpg" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Secure</h5>
+              <p class="card-text">Your data is safe with us.</p>
+              <span class="badge text-bg-success">Trusted</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="home_typo_portfolio10.jpg" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Scalable</h5>
+              <p class="card-text">Built to grow with your needs.</p>
+              <span class="badge text-bg-danger">Hot</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion -->
+    <div class="container mb-5">
+      <h2 class="text-center mb-4">FAQ</h2>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+              What is this site?
+            </button>
+          </h2>
+          <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">This is a demo Bootstrap page.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+              How do I learn Bootstrap?
+            </button>
+          </h2>
+          <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Practice with official examples and components.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table + Progress -->
+    <div class="container mb-5">
+      <h2 class="text-center mb-4">Team Progress</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr><th>Member</th><th>Task</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Arooj</td><td>Design</td><td><div class="progress"><div class="progress-bar w-75">75%</div></div></td></tr>
+          <tr><td>Ali</td><td>Development</td><td><div class="progress"><div class="progress-bar bg-success w-100">100%</div></div></td></tr>
+          <tr><td>Sara</td><td>Testing</td><td><div class="progress"><div class="progress-bar bg-warning w-50">50%</div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Form -->
+    <div class="container mb-5">
+      <h2 class="text-center mb-4">Contact Us</h2>
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" placeholder="Enter your name">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" placeholder="Enter your email">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Message</label>
+          <textarea class="form-control" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+    </div>
+
+    <!-- Modal Trigger -->
+    <div class="text-center mb-5">
+      <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#demoModal">
+        Open Modal
+      </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="demoModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Bootstrap Modal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">This is a demo modal with Bootstrap.</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Okay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center py-3">
+      <p class="mb-0">© 2025 DemoSite. Built with Bootstrap.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
