@@ -1,0 +1,133 @@
+<div class="pastel-page">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-nav">
+        <a href="/" class="breadcrumb-item">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="/shop" class="breadcrumb-item">Shop</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-item active">Cart</span>
+    </div>
+
+    <% if (typeof error !== 'undefined' && error && error.length) { %>
+        <div style="margin: 14px 0; padding: 12px 14px; border-left: 5px solid #ef4444; background: rgba(239,68,68,.08); color: #7f1d1d; border-radius: 10px;">
+            <strong style="display:block; margin-bottom:4px;">Heads up</strong>
+            <span><%= error[0] %></span>
+        </div>
+    <% } %>
+    <% if (typeof success !== 'undefined' && success && success.length) { %>
+        <div style="margin: 14px 0; padding: 12px 14px; border-left: 5px solid #22c55e; background: rgba(34,197,94,.08); color: #065f46; border-radius: 10px;">
+            <strong style="display:block; margin-bottom:4px;">Success</strong>
+            <span><%= success[0] %></span>
+        </div>
+    <% } %>
+
+    <h2 style="font-style: italic; color: #555; margin-bottom: 30px; background: linear-gradient(135deg, var(--peach-1), var(--sky-1)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Shopping Cart</h2>
+
+        <% if (!cart || cart.length === 0) { %>
+                <div style="text-align: center; padding: 50px; background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(245,250,255,.95)); border-radius: 20px; border-left: 5px solid var(--peach-1);">
+                        <h3 style="color: #aaa; margin-bottom: 20px;">Your cart is empty.</h3>
+                        <p style="color: #999; margin-bottom: 24px;">Explore our collection of premium fonts and add them to your cart.</p>
+                        <div id="inlineCartMessage" style="display:none; margin: 14px 0; padding: 12px 14px; border-left: 5px solid #ef4444; background: rgba(239,68,68,.08); color: #7f1d1d; border-radius: 10px;"></div>
+                        <div style="display:flex; gap:12px; justify-content:center; flex-wrap: wrap; margin-top: 12px;">
+                            <a href="/shop" class="btn-action" style="background: var(--grad-peach); color: #fff; text-decoration: none; display: inline-block;">Start Shopping</a>
+                            <a href="/checkout" id="btnCheckout" data-cart-count="0" class="btn-action" style="background: var(--grad-sky); color: #fff; text-decoration: none; display: inline-block;">Proceed to Checkout →</a>
+                        </div>
+                </div>
+                <script>
+                (function(){
+                    var btn = document.getElementById('btnCheckout');
+                    if (!btn) return;
+                    var cartCount = Number(btn.getAttribute('data-cart-count') || '0');
+                    btn.addEventListener('click', function(e){
+                        if (cartCount <= 0) {
+                            e.preventDefault();
+                            var box = document.getElementById('inlineCartMessage');
+                            if (box) {
+                                box.textContent = 'Your cart is empty. Add items to continue.';
+                                box.style.display = 'block';
+                            } else {
+                                alert('Your cart is empty. Add items to continue.');
+                            }
+                        }
+                    });
+                })();
+                </script>
+        <% } else { %>
+        <table class="pastel-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th style="text-align: center;">Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let grandTotal = 0; %>
+                <% cart.forEach(item => { %>
+                    <% let lineTotal = item.price * item.qty; %>
+                    <% grandTotal += lineTotal; %>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <img src="<%= item.image %>" style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px;" onerror="this.src='/images/placeholder.jpg'">
+                                <div>
+                                    <span style="font-weight: bold; color: #444; display: block;"><%= item.name %></span>
+                                    <span style="font-size: 12px; color: #999;">Premium Font</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="font-weight: 700; color: var(--peach-2);">$<%= item.price %></td>
+                        <td style="text-align: center;">
+                            <div style="display: inline-flex; align-items: center; gap: 10px; background: #f9f9f9; padding: 5px 10px; border-radius: 20px;">
+                                <a href="/cart/update/<%= item._id %>/sub" class="btn-qty">−</a>
+                                <span style="font-weight: bold; width: 25px; text-align: center;"><%= item.qty %></span>
+                                <a href="/cart/update/<%= item._id %>/add" class="btn-qty">+</a>
+                            </div>
+                        </td>
+                        <td style="font-weight: bold; color: var(--sky-1); font-size: 16px;">$<%= lineTotal.toFixed(2) %></td>
+                        <td>
+                            <a href="/cart/remove/<%= item._id %>" class="btn-remove" title="Remove from cart"><i class="fas fa-trash"></i> Remove</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges" style="margin-top: 32px;">
+            <div class="badge-item">
+                <span class="badge-icon">✓</span>
+                <strong>Secure Checkout</strong>
+            </div>
+            <div class="badge-item">
+                <span class="badge-icon">🔒</span>
+                <strong>SSL Encrypted</strong>
+            </div>
+            <div class="badge-item">
+                <span class="badge-icon">↩️</span>
+                <strong>30-Day Refund</strong>
+            </div>
+        </div>
+
+        <div class="summary-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h3 style="margin: 0; color: #555;">Subtotal:</h3>
+                <span style="font-size: 20px; color: var(--peach-2); font-weight: 900;">$<%= grandTotal.toFixed(2) %></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #f0e5b3;">
+                <span style="color: #555;">Shipping:</span>
+                <span style="font-weight: 700;">FREE</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h3 style="margin: 0; color: #555;">Grand Total:</h3>
+                <span style="font-size: 32px; color: var(--peach-2); font-weight: 900;">$<%= grandTotal.toFixed(2) %></span>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <a href="/shop" style="flex: 1; min-width: 150px; padding: 12px; text-align: center; color: #999; border: 2px solid #eee; border-radius: 10px; text-decoration: none; font-weight: 700; transition: all .2s ease;" class="btn-continue-shopping">← Continue Shopping</a>
+                <a href="/checkout" style="flex: 1; min-width: 150px;" class="btn-action" style="background: var(--grad-sky); color: white; text-decoration: none; display: block; text-align: center;">Proceed to Checkout →</a>
+            </div>
+        </div>
+    <% } %>
+</div>
