@@ -1,0 +1,73 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-nav" style="margin-bottom: 24px;">
+    <a href="/" class="breadcrumb-item">Home</a>
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-item active">Admin Dashboard</span>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-5">
+    <h2 class="fw-bold">📦 Product Management</h2>
+    <a href="/admin/product/create" class="btn btn-primary btn-lg shadow" style="background: var(--grad-peach); border: none;"><i class="fas fa-plus me-2"></i>Add New Product</a>
+</div>
+
+<div class="card card-custom p-4 bg-white">
+    <table class="table table-hover align-middle">
+        <thead class="bg-light text-uppercase small text-muted">
+            <tr>
+                <th class="py-3 ps-3">Product Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th class="text-end pe-3">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (products && products.length > 0) { %>
+                <% products.forEach(p => { %>
+                    <tr>
+                        <td class="ps-3 fw-bold"><%= p.name %></td>
+                        <td><span class="badge bg-light text-dark border"><%= p.category %></span></td>
+                        <td class="text-success fw-bold">$<%= p.price %></td>
+                        <td>
+                            <div class="stock-indicator">
+                                <div class="stock-bar" style="width: 50px;">
+                                    <div class="stock-fill" style="width: 65%;"></div>
+                                </div>
+                                <span class="stock-text">12</span>
+                            </div>
+                        </td>
+                        <td class="text-end pe-3">
+                            <a href="/admin/product/edit/<%= p._id %>" class="btn btn-sm btn-outline-primary me-1" title="Edit"><i class="fas fa-edit"></i></a>
+                            <a href="/admin/product/delete/<%= p._id %>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this product?')" title="Delete"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 40px;">
+                        <p style="color: #999; margin: 0;">No products found. <a href="/admin/product/create">Create one now</a></p>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<!-- Admin Stats -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 32px;">
+    <div class="badge-item" style="padding: 24px;">
+        <div style="font-size: 32px; color: var(--sky-1); font-weight: 900; margin-bottom: 8px;">24</div>
+        <strong style="color: var(--grey-2);">Total Products</strong>
+        <p style="color: #999; margin: 4px 0 0 0; font-size: 12px;">Active listings</p>
+    </div>
+    <div class="badge-item" style="padding: 24px;">
+        <div style="font-size: 32px; color: var(--peach-1); font-weight: 900; margin-bottom: 8px;">$1,245</div>
+        <strong style="color: var(--grey-2);">Total Sales</strong>
+        <p style="color: #999; margin: 4px 0 0 0; font-size: 12px;">This month</p>
+    </div>
+    <div class="badge-item" style="padding: 24px;">
+        <div style="font-size: 32px; color: var(--yellow-1); font-weight: 900; margin-bottom: 8px;">156</div>
+        <strong style="color: var(--grey-2);">Total Orders</strong>
+        <p style="color: #999; margin: 4px 0 0 0; font-size: 12px;">All time</p>
+    </div>
+</div>

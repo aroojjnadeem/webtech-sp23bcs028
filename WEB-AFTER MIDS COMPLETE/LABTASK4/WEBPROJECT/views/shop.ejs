@@ -1,0 +1,207 @@
+<div class="container mt-4">
+    <!-- Typography Category Banner -->
+    <div class="promo-banner" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; padding: 25px; text-align: center; color: white; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3); margin-bottom: 25px;">
+        <h4 style="margin: 0 0 10px 0; font-size: 1.8rem; font-weight: 700;">🎨 Professional Typography Collection</h4>
+        <p style="margin: 0; font-size: 1.1rem; opacity: 0.95;">Discover premium fonts for every creative project</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" placeholder="Search fonts by name or category...">
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-nav">
+        <a href="/" class="breadcrumb-item">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-item active">Shop</span>
+    </div>
+
+    <!-- Trust Badges -->
+    <div class="trust-badges">
+        <div class="badge-item">
+            <span class="badge-icon">✓</span>
+            <strong>Authentic</strong>
+            <span>100% Original</span>
+        </div>
+        <div class="badge-item">
+            <span class="badge-icon">🚚</span>
+            <strong>Fast Delivery</strong>
+            <span>Instant Download</span>
+        </div>
+        <div class="badge-item">
+            <span class="badge-icon">🛡️</span>
+            <strong>Secure</strong>
+            <span>SSL Protected</span>
+        </div>
+        <div class="badge-item">
+            <span class="badge-icon">↩️</span>
+            <strong>Easy Returns</strong>
+            <span>30-Day Guarantee</span>
+        </div>
+    </div>
+
+    <div class="filter-bar">
+        <h3>Filter Fonts</h3>
+        <form action="/shop" method="GET" class="d-flex flex-wrap gap-2 w-100 align-items-center">
+            <select name="category" style="flex:1;">
+                <option value="">All Categories</option>
+                <option value="Serif" <%= filter.category == 'Serif' ? 'selected' : '' %>>Serif</option>
+                <option value="Sans-Serif" <%= filter.category == 'Sans-Serif' ? 'selected' : '' %>>Sans Serif</option>
+                <option value="Display" <%= filter.category == 'Display' ? 'selected' : '' %>>Display</option>
+            </select>
+            <input type="number" name="min" placeholder="Min Price" value="<%= filter.min %>" style="width: 100px;">
+            <input type="number" name="max" placeholder="Max Price" value="<%= filter.max %>" style="width: 100px;">
+            <button class="btn-pro btn-sky">Apply</button>
+            <a href="/shop" class="btn-pro" style="background:#eee; color:#555;">Clear</a>
+        </form>
+    </div>
+
+    <div class="row g-4">
+        <% products.forEach(product => { %>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="pastel-card" style="position: relative; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.1)'">
+                    <!-- Category Badge -->
+                    <span class="product-badge" style="<%= product.category === 'Serif' ? 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);' : product.category === 'Sans-Serif' ? 'background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);' : 'background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);' %>"><%= product.category %></span>
+                    
+                    <!-- Wishlist Button -->
+                    <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to Wishlist">♡</button>
+                    
+                    <img src="<%= product.image %>" alt="<%= product.name %>" onerror="this.src='/images/placeholder.jpg'">
+                    <div class="card-body">
+                        <span class="card-cat"><%= product.category %></span>
+                        <h4 class="card-title"><%= product.name %></h4>
+                        
+                        <!-- Star Rating -->
+                        <div class="star-rating">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star">★</span>
+                            <span class="rating-count">(48)</span>
+                        </div>
+                        
+                        <div class="card-price">$<%= product.price %></div>
+                        
+                        <!-- Stock Indicator -->
+                        <div class="stock-indicator">
+                            <div class="stock-bar">
+                                <div class="stock-fill" style="width: 75%;"></div>
+                            </div>
+                            <span class="stock-text">In Stock</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 8px; margin-top: 12px;">
+                            <form action="/cart/add/<%= product._id %>" method="POST" style="flex: 1;">
+                                <button class="btn-pro btn-peach w-100">Add to Cart</button>
+                            </form>
+                            <button class="quick-view-btn" style="flex: 0.8; padding: 10px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="quickView('<%= product._id %>', '<%= product.name %>', '<%= product.image %>', '<%= product.price %>', '<%= product.category %>', '<%= product.description || 'Professional typography font perfect for your creative projects.' %>')">👁 Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+    
+    <div class="text-center mt-5">
+        <% for(let i=1; i <= totalPages; i++) { %>
+            <a href="/shop?page=<%= i %>&category=<%= filter.category %>" 
+               class="btn-pro" 
+               style="background: <%= currentPage == i ? 'var(--grad-peach)' : '#fff' %>; border: 1px solid #ddd; margin: 0 5px; color: <%= currentPage == i ? '#fff' : '#333' %>;">
+               <%= i %>
+            </a>
+        <% } %>
+    </div>
+</div>
+
+<!-- Quick View Modal -->
+<div id="quickViewModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 9999; justify-content: center; align-items: center;" onclick="closeQuickView()">
+    <div style="background: white; border-radius: 20px; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); animation: modalSlideIn 0.3s ease;" onclick="event.stopPropagation()">
+        <div style="padding: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <h2 id="modalTitle" style="margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 2rem;">Product Name</h2>
+                <button onclick="closeQuickView()" style="background: #f5f5f5; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; transition: all 0.3s;" onmouseover="this.style.background='#667eea'; this.style.color='white'" onmouseout="this.style.background='#f5f5f5'; this.style.color='#333'">×</button>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div>
+                    <img id="modalImage" src="" alt="Product" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
+                    <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-radius: 10px;">
+                        <span id="modalCategory" style="font-size: 0.9rem; color: #667eea; font-weight: 600;">Category</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 15px;">
+                            <span style="font-size: 2.5rem; font-weight: 700; color: #667eea;">$<span id="modalPrice">0</span></span>
+                        </div>
+                        <div class="star-rating" style="margin-bottom: 20px;">
+                            <span class="star filled" style="color: #ffc107; font-size: 20px;">★</span>
+                            <span class="star filled" style="color: #ffc107; font-size: 20px;">★</span>
+                            <span class="star filled" style="color: #ffc107; font-size: 20px;">★</span>
+                            <span class="star filled" style="color: #ffc107; font-size: 20px;">★</span>
+                            <span class="star" style="color: #ddd; font-size: 20px;">★</span>
+                            <span style="color: #666; margin-left: 8px;">(48 reviews)</span>
+                        </div>
+                    </div>
+                    <p id="modalDescription" style="color: #666; line-height: 1.8; margin-bottom: 25px;">Description</p>
+                    <div style="border-top: 2px solid #f0f0f0; padding-top: 20px; margin-top: 20px;">
+                        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                            <div style="flex: 1; padding: 15px; background: #f8f9fa; border-radius: 10px; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 5px;">✓</div>
+                                <div style="font-size: 0.85rem; color: #666;">Licensed</div>
+                            </div>
+                            <div style="flex: 1; padding: 15px; background: #f8f9fa; border-radius: 10px; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 5px;">⚡</div>
+                                <div style="font-size: 0.85rem; color: #666;">Instant Access</div>
+                            </div>
+                            <div style="flex: 1; padding: 15px; background: #f8f9fa; border-radius: 10px; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 5px;">🔄</div>
+                                <div style="font-size: 0.85rem; color: #666;">Updates</div>
+                            </div>
+                        </div>
+                        <form id="modalAddToCart" method="POST" style="margin-top: 20px;">
+                            <button type="submit" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 25px rgba(102, 126, 234, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">🛒 Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+@keyframes modalSlideIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+</style>
+
+<script>
+function toggleWishlist(btn){
+  btn.classList.toggle('active');
+}
+
+function quickView(id, name, image, price, category, description) {
+    document.getElementById('modalTitle').textContent = name;
+    document.getElementById('modalImage').src = image;
+    document.getElementById('modalPrice').textContent = price;
+    document.getElementById('modalCategory').textContent = category;
+    document.getElementById('modalDescription').textContent = description;
+    document.getElementById('modalAddToCart').action = '/cart/add/' + id;
+    document.getElementById('quickViewModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeQuickView() {
+    document.getElementById('quickViewModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+</script>

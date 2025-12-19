@@ -1,0 +1,72 @@
+<div class="pastel-page" style="display: flex; justify-content: center;">
+    <!-- Breadcrumb -->
+    <div style="width: 100%; max-width: 600px;">
+        <div class="breadcrumb-nav">
+            <a href="/" class="breadcrumb-item">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="/shop" class="breadcrumb-item">Shop</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="/cart" class="breadcrumb-item">Cart</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item active">Checkout</span>
+        </div>
+
+        <div class="pretty-form-container">
+            <h2 style="text-align: center; font-style: italic;">Complete Your Purchase</h2>
+            
+            <form action="/checkout" method="POST" style="margin-top: 30px;">
+                <!-- Contact Information -->
+                <h4 style="color: var(--grey-2); font-weight: 700; margin-top: 28px; margin-bottom: 16px; text-transform: uppercase; font-size: 13px; letter-spacing: 0.7px;">Contact Information</h4>
+                
+                <label class="pretty-label">Full Name</label>
+                <input type="text" class="pretty-input" name="fullname" required placeholder="John Doe">
+
+                <label class="pretty-label">Email Address</label>
+                <input type="email" class="pretty-input" name="email" required placeholder="john@example.com">
+
+                <!-- Shipping Address -->
+                <h4 style="color: var(--grey-2); font-weight: 700; margin-top: 28px; margin-bottom: 16px; text-transform: uppercase; font-size: 13px; letter-spacing: 0.7px;">Shipping Address</h4>
+                
+                <label class="pretty-label">Street Address</label>
+                <textarea class="pretty-textarea" name="address" required placeholder="123 Main Street..." style="resize: vertical; min-height: 80px;"></textarea>
+
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <label class="pretty-label">City</label>
+                        <input type="text" class="pretty-input" name="city" required placeholder="New York">
+                    </div>
+                    <div style="flex: 1;">
+                        <label class="pretty-label">Zip Code</label>
+                        <input type="text" class="pretty-input" name="zip" required placeholder="10001">
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <h4 style="color: var(--grey-2); font-weight: 700; margin-top: 28px; margin-bottom: 16px; text-transform: uppercase; font-size: 13px; letter-spacing: 0.7px;">Payment Method</h4>
+                
+                <label class="pretty-label">Select Payment Method</label>
+                <select class="pretty-select" name="payment" required>
+                    <option value="">-- Choose Payment Method --</option>
+                    <option value="credit-card">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="cod">Cash on Delivery</option>
+                </select>
+
+                <!-- Trust Badges -->
+                <div class="trust-badges" style="margin: 32px 0;">
+                    <div class="badge-item">
+                        <span class="badge-icon">🔒</span>
+                        <strong>SSL Secured</strong>
+                    </div>
+                    <div class="badge-item">
+                        <span class="badge-icon">✓</span>
+                        <strong>Safe Payment</strong>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-action" style="width: 100%; margin-top: 30px; background: var(--grad-sky); color: white; font-size: 16px;">Complete Order</button>
+            </form>
+        </div>
+    </div>
+</div>

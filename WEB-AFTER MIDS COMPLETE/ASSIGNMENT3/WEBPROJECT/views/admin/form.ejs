@@ -1,0 +1,107 @@
+<div class="pastel-page" style="display: flex; justify-content: center; align-items: center;">
+    
+    <div class="pretty-form-container">
+        <h2 style="text-align: center; font-style: italic; margin-bottom: 30px;">
+            <%= product ? '✏️ Edit Product' : '➕ Add New Product' %>
+        </h2>
+
+        <form action="<%= product ? '/admin/product/edit/' + product._id : '/admin/product/create' %>" method="POST" enctype="multipart/form-data">
+            
+            <label class="pretty-label">Product Name</label>
+            <input type="text" name="name" class="pretty-input" value="<%= product ? product.name : '' %>" required placeholder="e.g. Helvetica Bold">
+
+            <div style="display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <label class="pretty-label">Price ($)</label>
+                    <input type="number" name="price" class="pretty-input" value="<%= product ? product.price : '' %>" step="0.01" required placeholder="29.99">
+                </div>
+                <div style="flex: 1;">
+                    <label class="pretty-label">Category</label>
+                    <select name="category" class="pretty-select" required>
+                        <option value="">-- Select Category --</option>
+                        <option value="Serif" <%= product && product.category=='Serif' ? 'selected':'' %>>Serif</option>
+                        <option value="Sans-Serif" <%= product && product.category=='Sans-Serif' ? 'selected':'' %>>Sans Serif</option>
+                        <option value="Display" <%= product && product.category=='Display' ? 'selected':'' %>>Display</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Image Upload Section -->
+            <label class="pretty-label">Product Image</label>
+            <div style="position: relative; margin-bottom: 20px;">
+                <input 
+                    type="file" 
+                    name="image" 
+                    class="pretty-input" 
+                    id="imageInput"
+                    accept="image/*" 
+                    placeholder="Upload product image"
+                    style="cursor: pointer;"
+                >
+                <div style="font-size: 12px; color: #999; margin-top: 8px;">
+                    Supported formats: JPG, PNG, GIF, WebP (Max 5MB)
+                </div>
+            </div>
+
+            <!-- Image Preview -->
+            <% if (product && product.image && product.image.startsWith('/uploads/')) { %>
+                <div style="margin-bottom: 20px; padding: 16px; background: linear-gradient(135deg, rgba(77,168,218,.1), rgba(255,166,107,.1)); border-radius: 12px; border: 2px dashed #eef2f6;">
+                    <div style="font-size: 12px; color: #999; margin-bottom: 12px;">Current Image:</div>
+                    <img src="<%= product.image %>" alt="<%= product.name %>" style="max-width: 100%; max-height: 200px; border-radius: 8px;">
+                    <div style="margin-top: 12px;">
+                        <label class="filter-option">
+                            <input type="checkbox" name="removeImage" value="yes">
+                            <span style="margin: 0; margin-left: 4px;">Remove current image</span>
+                        </label>
+                    </div>
+                </div>
+            <% } %>
+
+            <!-- Fallback URL Input -->
+            <label class="pretty-label">Or use Image URL (if no file uploaded)</label>
+            <input type="text" name="imageUrl" class="pretty-input" value="<%= product && product.image && !product.image.startsWith('/uploads/') ? product.image : '' %>" placeholder="https://example.com/image.jpg">
+
+            <label class="pretty-label">Description</label>
+            <textarea name="description" class="pretty-textarea" rows="5" placeholder="Write a detailed description about this font..."><%= product ? product.description : '' %></textarea>
+
+            <!-- Product Status -->
+            <h4 style="color: var(--grey-2); font-weight: 700; margin-top: 28px; margin-bottom: 16px; text-transform: uppercase; font-size: 13px; letter-spacing: 0.7px;">Product Status</h4>
+            
+            <div class="filter-option">
+                <input type="checkbox" id="featured" name="featured" value="yes" <%= product && product.featured ? 'checked' : '' %>>
+                <label for="featured" style="margin: 0; cursor: pointer;">Mark as Featured</label>
+            </div>
+            <div class="filter-option">
+                <input type="checkbox" id="bestseller" name="bestseller" value="yes" <%= product && product.bestseller ? 'checked' : '' %>>
+                <label for="bestseller" style="margin: 0; cursor: pointer;">Mark as Bestseller</label>
+            </div>
+
+            <div style="margin-top: 30px; display: flex; gap: 15px;">
+                <button type="submit" class="btn-action" style="width: 100%; background: var(--grad-peach); color: white;">
+                    <i class="fas fa-save me-2"></i>Save Product
+                </button>
+                <a href="/admin" class="btn-action" style="width: 100%; text-align: center; background: #eee; color: #555; box-shadow: none; text-decoration: none;">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+// Image preview functionality
+document.getElementById('imageInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        if (file.size > 5 * 1024 * 1024) {
+            alert('File size exceeds 5MB. Please choose a smaller image.');
+            e.target.value = '';
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            // Show preview
+            console.log('Image selected:', file.name);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>

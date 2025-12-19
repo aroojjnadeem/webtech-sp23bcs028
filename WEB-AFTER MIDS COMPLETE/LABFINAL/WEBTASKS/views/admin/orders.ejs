@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Orders</h2>
+    <a class="btn btn-outline-secondary" href="/admin">Back to Products</a>
+  </div>
+
+  <div class="card card-custom">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th scope="col">Order ID</th>
+              <th scope="col">Customer</th>
+              <th scope="col">Total</th>
+              <th scope="col">Status</th>
+              <th scope="col">Date</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (!orders || !orders.length) { %>
+              <tr>
+                <td colspan="6" class="text-center text-muted">No orders yet.</td>
+              </tr>
+            <% } else { %>
+              <% orders.forEach(order => { %>
+                <tr>
+                  <td class="text-monospace"><%= order._id %></td>
+                  <td>
+                    <div class="fw-semibold"><%= order.customerName %></div>
+                    <div class="text-muted small"><%= order.email %></div>
+                  </td>
+                  <td>$<%= order.totalAmount.toFixed(2) %></td>
+                  <td><span class="badge bg-light text-dark"><%= order.status %></span></td>
+                  <td><%= order.createdAt ? order.createdAt.toDateString() : '' %></td>
+                  <td class="d-flex gap-2">
+                    <form action="/admin/orders/<%= order._id %>/status" method="POST" class="d-inline">
+                      <input type="hidden" name="status" value="Confirmed">
+                      <button class="btn btn-sm btn-success" type="submit">Confirm</button>
+                    </form>
+                    <form action="/admin/orders/<%= order._id %>/status" method="POST" class="d-inline">
+                      <input type="hidden" name="status" value="Cancelled">
+                      <button class="btn btn-sm btn-danger" type="submit">Cancel</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

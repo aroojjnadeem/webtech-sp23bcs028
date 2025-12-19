@@ -1,0 +1,18 @@
+<div class="sidebar" id="sidebar">
+  <ul>
+    <li><img src="/images/typo.png" alt="logo" /></li>
+    <li><a href="/">HOME</a></li>
+    <li><a href="/shop">SHOP</a></li>
+    <li><a href="/cart">CART</a></li>
+    <li><a href="/contact">CONTACT</a></li>
+    <% if (typeof user !== 'undefined' && user) { %>
+      <% if (user.role === 'admin') { %>
+        <li><a href="/admin">ADMIN</a></li>
+      <% } %>
+      <li><a href="/auth/logout">LOGOUT (<%= user.name %>)</a></li>
+    <% } else { %>
+      <li><a href="/login">LOGIN</a></li>
+      <li><a href="/register">REGISTER</a></li>
+    <% } %>
+  </ul>
+</div>

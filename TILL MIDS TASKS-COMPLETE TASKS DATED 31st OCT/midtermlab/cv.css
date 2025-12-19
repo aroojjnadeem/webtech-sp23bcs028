@@ -1,0 +1,187 @@
+/* ===== BASE SITE DESIGN ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height: 1.5;
+  color: #111;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background: #f3f3f3;
+}
+
+.menu-btn {
+  position: fixed;
+  top: 16px;
+  left: 12px;
+  z-index: 12;
+  cursor: pointer;
+  padding: 8px 10px;
+  font-size: 26px;
+  background: transparent;
+  border: none;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 260px;
+  height: 100vh;
+  background: #f8f4f4;
+  transition: left 0.3s ease;
+  padding-top: 64px;
+  z-index: 10;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.06);
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 16px 18px;
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  color: #111;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar li img {
+  max-width: 140px;
+  margin: 0 auto 8px;
+  display: block;
+}
+
+.sidebar li:hover {
+  background: #6d6f70;
+  color: #fff;
+}
+
+.sidebar li.active {
+  background: #111;
+  color: #fff;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  transition: margin-left 0.3s ease;
+  padding: 22px;
+  margin-left: 0;
+}
+
+@media (min-width: 901px) {
+  .main.shifted {
+    margin-left: 260px;
+  }
+}
+
+section.top {
+  background: #e0e0e0;
+  padding: 32px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+section.top h2 {
+  font-style: italic;
+  font-size: 50px;
+  margin-top: 12%;
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+  background: #fff;
+  border-radius: 6px;
+  margin-top: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* ===== CV SECTION STYLING ===== */
+.cv-wrapper {
+  background: linear-gradient(135deg, #787878, #ececec);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cv-wrapper h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 42px;
+  font-weight: bold;
+  color: #2c3e50;
+  letter-spacing: 1px;
+}
+
+.cv-section {
+  background: #f9f9fb;
+  border-left: 6px solid #0078ff;
+  margin-bottom: 25px;
+  padding: 22px 28px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.cv-section:hover {
+  background: #f0f8ff;
+}
+
+.cv-section.active {
+  background: #e6f2ff;
+  border-left-color: #0056b3;
+  box-shadow: 0 0 14px rgba(0, 86, 179, 0.2);
+}
+
+.cv-section h3 {
+  cursor: pointer;
+  font-size: 24px;
+  color: #0078ff;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cv-section .details {
+  display: none;
+  padding-left: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.cv-section ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+
+.cv-section p {
+  margin: 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cv-wrapper {
+    padding: 20px;
+  }
+  .cv-wrapper h2 {
+    font-size: 30px;
+  }
+  .cv-section h3 {
+    font-size: 20px;
+  }
+}

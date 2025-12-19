@@ -1,0 +1,253 @@
+<% if (success && success.length > 0) { %>
+  <div class="container mt-3">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+<% } %>
+<% if (error && error.length > 0) { %>
+  <div class="container mt-3">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= error %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+<% } %>
+
+<section class="top container" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-radius: 20px; padding: 40px; margin-top: 20px; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3), 0 0 20px rgba(118, 75, 162, 0.2); border: 2px solid rgba(102, 126, 234, 0.2);">
+  <div class="d-flex align-items-center gap-4">
+    <img src="/images/typo.png" alt="logo" style="height: 30vh; width: 30vh; filter: drop-shadow(0 5px 15px rgba(102, 126, 234, 0.4));" />
+    <div>
+      <br><br>
+      <% if (user) { %>
+        <h2 id="welcomeMessage">
+          Welcome back, <%= user.name %>!
+          <br />
+          <span style="font-size: 0.6em; opacity: 0.8;">Excellent typography collection_</span>
+        </h2>
+      <% } else { %>
+        <h2>
+          Excellent topography
+          <br />
+          collection_
+        </h2>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Auto-dismiss alerts after 4 seconds
+  setTimeout(() => {
+    const alerts = document.querySelectorAll('.alert');
+    alerts.forEach(alert => {
+      const bsAlert = new bootstrap.Alert(alert);
+      bsAlert.close();
+    });
+  }, 4000);
+
+  // Continuously alternate welcome message every 3.5 seconds
+  const welcomeMsg = document.getElementById('welcomeMessage');
+  if (welcomeMsg) {
+    const originalText = `Excellent topography<br /><span style="font-size: 0.6em; opacity: 0.8;">collection_</span>`;
+    const welcomeText = welcomeMsg.innerHTML;
+    let showingWelcome = true;
+
+    setInterval(() => {
+      welcomeMsg.style.transition = 'opacity 0.5s ease';
+      welcomeMsg.style.opacity = '0';
+      
+      setTimeout(() => {
+        if (showingWelcome) {
+          welcomeMsg.innerHTML = originalText;
+        } else {
+          welcomeMsg.innerHTML = welcomeText;
+        }
+        showingWelcome = !showingWelcome;
+        welcomeMsg.style.opacity = '1';
+      }, 500);
+    }, 3500);
+  }
+</script>
+
+<div class="container my-4">
+  <div class="row g-3">
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item color1">
+        <img src="/images/home_typo_portfolio0.jpg" alt="Align huoeb" loading="lazy" />
+        <span class="caption">Align huoeb</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item color2">
+        <img src="/images/home_typo_portfolio1.jpg" alt="Tyuty bcbeuo" loading="lazy" />
+        <span class="caption">Tyuty bcbeuo</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item color3">
+        <img src="/images/home_typo_portfolio2.jpg" alt="yuyr Three" loading="lazy" />
+        <span class="caption">yuyr Three</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item color4">
+        <img src="/images/home_typo_portfolio3.jpg" alt="Text ryueur" loading="lazy" />
+        <span class="caption">Text ryueur</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item color5">
+        <img src="/images/home_typo_portfolio4.jpg" alt="Suebc bcnn" loading="lazy" />
+        <span class="caption">Suebc bcnn</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item color6">
+        <img src="/images/home_typo_portfolio5.jpg" alt="Text Six" loading="lazy" />
+        <span class="caption">Text Six</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item color7">
+        <img src="/images/home_typo_portfolio6.jpg" alt="Text Seven" loading="lazy" />
+        <span class="caption">Text Seven</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item color8">
+        <img src="/images/home_typo_portfolio7.jpg" alt="Text Eight" loading="lazy" />
+        <span class="caption">Text Eight</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item color9">
+        <img src="/images/home_typo_portfolio8.jpg" alt="Text Nine" loading="lazy" />
+        <span class="caption">Text Nine</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item color10">
+        <img src="/images/home_typo_portfolio9.jpg" alt="Text Ten" loading="lazy" />
+        <span class="caption">Text Ten</span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="gallery-item color11">
+        <img src="/images/home_typo_portfolio10.jpg" alt="Text Eleven" loading="lazy" />
+        <span class="caption">Text Eleven</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="para">
+    <h1 class="heading">
+      <strong>We love<br />typography</strong>
+    </h1>
+
+    <div class="text">
+      <p>
+        <strong>Lorem ipsum dolor sit amet consectetur... </strong>
+        <br /><br />
+        Ex excepturi, reprehenderit corporis eaque eum voluptatem facilis
+        soluta expedita! Corrupti, magni! Voluptatum vitae facilis expedita
+        nihil, alias cupiditate. Adipisicing elit. Adipisci ex in mollitia
+        eaque, quibusdam debitis harum? At debitis aut vero commodi ullam
+        iure reiciendis similique ut quos nesciunt. Voluptates, magnam.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="para2">
+    <h1 class="heading">Receive new fonts<br />every week</h1>
+
+    <div class="text2">
+      <form action="" class="signup">
+        <input type="email" placeholder="Your email" />
+        <button type="button">Sign up</button>
+
+        <div style="height:12px"></div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="checkbox2" />
+          <label for="checkbox2">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Doloribus voluptatum vitae...
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="share" style="max-width: 800px; margin: 60px auto; text-align: center; display: block;">
+    <h1 style="margin-bottom: 30px; font-size: 2.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Share with us your<br />favorite font</h1>
+
+    <form class="share-form" onsubmit="return false;" style="margin-bottom: 25px;">
+      <div style="display: flex; gap: 10px; max-width: 100%; margin: 0 auto;">
+        <input type="url" placeholder="Paste a link to font page" style="flex: 1; padding: 14px 20px; border: 2px solid #ddd; border-radius: 10px; font-size: 15px; transition: all 0.3s;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)'" onblur="this.style.borderColor='#ddd'; this.style.boxShadow='none'" />
+        <button type="submit" style="padding: 14px 35px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Share</button>
+      </div>
+    </form>
+
+    <p style="max-width: 100%; margin: 25px auto 0; color: #666; line-height: 1.8; text-align: center; font-size: 1rem;">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus in
+      porro delectus dicta voluptate fugiat, enim itaque earum labore iste
+      consectetur. Share your favorite typography discoveries with our community!
+    </p>
+  </div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-3 fonts-wrap">
+    <div class="col-12 col-md-3">
+      <div class="options">
+        <h2>Serif</h2>
+        <p>Lorem, ctetur adipisicing elit. Veritatis quia iusto obcaecati...</p>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <div class="options">
+        <h2>Sans Serif</h2>
+        <p>
+          Lorem, ipsum dolor sit am iusto obcaecati, blanditiis deserunt
+          sequi possimus.. oribus, ullam, eligendi placeat ducimus. Tempore perferendis dolorum reiciendis.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <div class="options">
+        <h2>Handwrited</h2>
+        <p>
+          Lorem, ipsum dolor sit am iusto obcaecati, blanditiis deserunt
+          sequi possimus.. oribus, ullam, eligendi placeat ducimus. Tempore perferendis dolorum reiciendis.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <div class="options">
+        <h2>Display</h2>
+        <p>Lorem, ctetur adipisicing elit. Veritatis quia iusto obcaecati...</p>
+      </div>
+    </div>
+  </div>
+</div>
